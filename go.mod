@@ -1,1 +1,1 @@
-module credentials
+module github.com/percybolmer/credentials

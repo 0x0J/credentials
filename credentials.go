@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	/* Credentials realted errors */
+	/* Credentials related errors */
 	ErrMissingCredentials           error = errors.New("Missing the needed credentials for this connection type")
 	ErrFailedToUnmarshalCredentials error = errors.New("Failed to unmarshal provided JSON data")
 	ErrNeedUserAndPassword          error = errors.New("Need both username or password")
@@ -31,18 +31,18 @@ type Validator interface {
 }
 
 // NewCredentials is used to create a new Credentials object, and return a pointer to it
-// @See LoadNewCredentials if you want to Load and Create Credentials at the same time
+// @See LoadNewCredentials if you want to Load and Create Credentials at simultaneously
 func NewCredentials() *Credentials {
 	return &Credentials{}
 }
 
-// LoadNewCredentials will return a new Pointer to Credentials but Also load them with data
+// LoadNewCredentials will return a new Pointer to Credentials and load them with data
 func LoadNewCredentials(data []byte) (*Credentials, error) {
 	c := &Credentials{}
 	return c, c.loadCredentials(data)
 }
 
-// loadCredentials takes a byte array containing JSON data and Unmarshalls it
+// loadCredentials takes a byte array containing JSON data and unmarshalls it
 // will return err if unmarshal fails, will also return error on validation failures
 func (c *Credentials) loadCredentials(data []byte) error {
 	if err := json.Unmarshal(data, c); err != nil {
